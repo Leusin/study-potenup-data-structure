@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Recursive", "3.Recursive\3.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3. LinkedList", "3. LinkedList\3. LinkedList.vcxproj", "{60217193-95CE-4F19-A28F-A470D6A87D6C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "4.DoubleLinkedList", "4.DoubleLinkedList\4.DoubleLinkedList.vcxproj", "{AFB451CA-68A0-4124-95BC-9749EB3CC88E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{60217193-95CE-4F19-A28F-A470D6A87D6C}.Release|x64.Build.0 = Release|x64
 		{60217193-95CE-4F19-A28F-A470D6A87D6C}.Release|x86.ActiveCfg = Release|Win32
 		{60217193-95CE-4F19-A28F-A470D6A87D6C}.Release|x86.Build.0 = Release|Win32
+		{AFB451CA-68A0-4124-95BC-9749EB3CC88E}.Debug|x64.ActiveCfg = Debug|x64
+		{AFB451CA-68A0-4124-95BC-9749EB3CC88E}.Debug|x64.Build.0 = Debug|x64
+		{AFB451CA-68A0-4124-95BC-9749EB3CC88E}.Debug|x86.ActiveCfg = Debug|Win32
+		{AFB451CA-68A0-4124-95BC-9749EB3CC88E}.Debug|x86.Build.0 = Debug|Win32
+		{AFB451CA-68A0-4124-95BC-9749EB3CC88E}.Release|x64.ActiveCfg = Release|x64
+		{AFB451CA-68A0-4124-95BC-9749EB3CC88E}.Release|x64.Build.0 = Release|x64
+		{AFB451CA-68A0-4124-95BC-9749EB3CC88E}.Release|x86.ActiveCfg = Release|Win32
+		{AFB451CA-68A0-4124-95BC-9749EB3CC88E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

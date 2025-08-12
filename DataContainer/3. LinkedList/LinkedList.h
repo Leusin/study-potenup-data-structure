@@ -22,9 +22,19 @@ public:
 	// 출력
 	void Print();
 
+	// 오름차순 정렬 함수
+	void SelectionSortGreater();
+	void BubbleSortGreater();
+
 	int Count() const { return count; };
 
+	// 선택 정렬
+	void SelectSortLess();
+	void BubbleSortLess();
+	void InsertSortLess();
+
 private:
+
 	// Head 노드
 	Node* head = nullptr;
 
