@@ -13,7 +13,6 @@ public:
 
 	~Array()
 	{
-		delete[] data;
 	}
 
 	int GetSize() const { return size; };
@@ -47,7 +46,7 @@ int main()
 	// 실행 중에 저장될 메모리 공간이 정해진다.
 	// 
 	int* heapArray = new int[5] /* {} */;
-
+	
 	memset(heapArray, 0, sizeof(int) * 5);
 	delete[] heapArray;
 
