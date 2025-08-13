@@ -26,8 +26,15 @@ public:
 	void SelectSortLess();
 	void BubbleSortLess();
 	void InsertSortLess();
+	void MergeSortLess();
+	
+	//void QuickSortLess();
 
 	int Count() const { return count; };
+
+private:
+	Node* MergeSortLess(Node* head);
+	Node* MergeLess(Node* left, Node* right);
 
 private:
 

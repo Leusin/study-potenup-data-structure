@@ -35,7 +35,8 @@ int main()
 
     //list.SelectSortLess();
     //list.BubbleSortLess();
-    list.InsertSortLess();
+    //list.InsertSortLess();
+    list.MergeSortLess();
 
     list.Print();
 

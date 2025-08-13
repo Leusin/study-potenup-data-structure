@@ -239,7 +239,7 @@ void LinkedList::BubbleSortLess()
 	// 시간복잡도: O(n^2)
 	// 공간복잡도: O(1)
 	// 안정성: true
-	// 근처 노드끼리 자리를 배구끼 때문에 간단. 하지만 성능이 좋지 않음
+	// 근처 노드끼리 자리를 바꾸기 때문에 간단. 하지만 성능이 좋지 않음
 
 	// 리스트가 비어 있거나 노드가 하나인 경우
 	if (head == nullptr || head->next == nullptr)
@@ -343,4 +343,96 @@ void LinkedList::InsertSortLess()
 		// 3. 다음 노드로 이동
 		min = nextNode;
 	}
+}
+
+void LinkedList::MergeSortLess()
+{
+	// 시간복잡도: O(log n) - 일반 배열에서는 n log n
+	// 공간복잡도: O(1)- 일반 배열에서는  O(n)
+	// 안정성: true
+	// 분할 정복 방식으로 더는 나눌 수 없을때까지 절반으로 나눈 후 정렬하면서 병합
+
+	// 리스트가 비어 있거나 노드가 하나인 경우
+	if (head == nullptr || head->next == nullptr)
+	{
+		return;
+	}
+
+	head = MergeSortLess(this->head);
+}
+
+Node* LinkedList::MergeSortLess(Node* inHead)
+{
+	// 1. 리스트 나누기
+
+	// 1-1. 탈출 조건
+	if (inHead == nullptr || inHead->next == nullptr)
+	{
+		return inHead;
+	}
+
+	// 1-2. 중간 지점 찾기
+	// 토끼와 거북이 알고리즘 사용
+	Node* slow = inHead; // 거북이: 한 번에 한 칸씩 이동
+	Node* fast = inHead->next; // 토끼: 한 번에 두칸씩 이동
+
+	while (fast != nullptr && fast->next != nullptr)
+	{
+		slow = slow->next;
+		fast = fast->next->next;
+	}
+	// while문을 빠져나오면 slow 는 중간 지점이 됨.
+
+	// 1-3. 두 리스트로 분리
+	// head -> ... -> slow | otherHead -> ... -> fest
+	Node* otherHead = slow->next;
+	slow->next = nullptr;
+
+	// 1-4. 재귀 호출
+	// 분리된 두 리스트를 재귀적으로 정렬
+	Node* sortedLeft = MergeSortLess(inHead); // head -> ... -> slow
+	Node* sortedRight = MergeSortLess(otherHead); // otherHead -> ... -> fest
+
+	// 2. 리스트 병합
+	return MergeLess(sortedLeft, sortedRight);
+}
+
+Node* LinkedList::MergeLess(Node* left, Node* right)
+{
+	// 2. 리스트 병합
+	// 2-1. 더미 노드 
+	Node dummy;
+	Node* tail = &dummy;
+
+	// 2-2. 노드 비교
+	while (left != nullptr && right != nullptr)
+	{
+		// l -> 
+		// r -> 
+		if (left && left->data < right->data) // 큰 노드 오른쪽에 있을 경우
+		{
+			tail->next = left;
+			left = left->next;
+		}
+		else if (right) // 작거나 같은 노드가 오른쪽에 있을 경우
+		{
+			tail->next = right;
+			right = right->next;
+		}
+		tail = tail->next;
+	}
+	
+	// 2-2. 나머지 노드 연결
+	if (left != nullptr)
+	{
+		tail->next = left;
+	}
+	else if (right != nullptr)
+	{
+		tail->next = right;
+	}
+
+	// 2-2. 새로운 헤드 반환
+
+	return dummy.next;
 }
