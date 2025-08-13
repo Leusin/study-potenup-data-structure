@@ -58,6 +58,24 @@ public:
 		last->next = first;
 	}
 
+	void PushFront(const T& newData)
+	{
+		// 새 노드 생성
+		Node<T>* newNode = new Node<T>();
+		newNode->data = newData;
+
+		// [f]<-->?
+		// [f]<-->[n]<-->?
+		Node<T>* next = first->next;
+		newNode->next = next;
+		first->next = newNode;
+		newNode->previous = first;
+		next->previous = newNode;
+
+		// 저장 개수 증가
+		++count;
+	}
+
 	// 마지막 위치에 노드 추가하는 함수
 	void PushBack(const T& newData)
 	{
@@ -75,6 +93,41 @@ public:
 		last->previous = newNode;
 
 		++count;
+	}
+
+	void Delete(const T& newData)
+	{
+		// 검색
+		Node<T>* deleteNode = first->next;
+		while (deleteNode && deleteNode != last)
+		{
+			// 확인
+			if (deleteNode->data == newData)
+			{
+				break;
+			}
+
+			deleteNode = deleteNode->next;
+		}
+
+		if (!deleteNode || deleteNode == last)
+		{
+			std::cout << "삭제할 노드를 찾지 못했습니다.\n";
+			return;
+		}
+
+		// 삭제 진행
+		// [1]<-->[d]<-->[3]
+		// [1]<-->[3]
+
+		// [1]->[3]
+		deleteNode->previous->next = deleteNode->next;
+		// [1]<-[3]
+		deleteNode->next->previous = deleteNode->previous;
+
+		SafeDelete(deleteNode); // 노드 삭제
+
+		--count; // 저장 수 감소 처리
 	}
 
 	void Print()

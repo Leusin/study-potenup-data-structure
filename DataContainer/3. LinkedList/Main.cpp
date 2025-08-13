@@ -31,9 +31,11 @@ int main()
 
     list.Print();
 
-    std::cout << "----- 정렬 -----\n";
+    std::cout << "정렬 -----\n";
 
-    list.SelectionSortGreater();
+    //list.SelectSortLess();
+    //list.BubbleSortLess();
+    list.InsertSortLess();
 
     list.Print();
 
