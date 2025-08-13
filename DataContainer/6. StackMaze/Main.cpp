@@ -58,7 +58,7 @@ int main()
 	}
 
 	Stack<Vector2> locationStack;
-	locationStack.Push(Vector2{ startY, startX });
+	locationStack.Push(Vector2{ startX, startY });
 
 	// 미로 탐색
 	while (!locationStack.IsEmpty())
