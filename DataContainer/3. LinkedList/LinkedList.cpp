@@ -347,8 +347,8 @@ void LinkedList::InsertSortLess()
 
 void LinkedList::MergeSortLess()
 {
-	// 시간복잡도: O(log n) - 일반 배열에서는 n log n
-	// 공간복잡도: O(1)- 일반 배열에서는  O(n)
+	// 시간복잡도: O(log n)
+	// 공간복잡도: ?
 	// 안정성: true
 	// 분할 정복 방식으로 더는 나눌 수 없을때까지 절반으로 나눈 후 정렬하면서 병합
 

@@ -27,9 +27,6 @@ public:
 	void BubbleSortLess();
 	void InsertSortLess();
 	void MergeSortLess();
-	
-	//void QuickSortLess();
-
 	int Count() const { return count; };
 
 private:
