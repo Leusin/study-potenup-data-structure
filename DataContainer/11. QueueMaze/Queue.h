@@ -1,12 +1,11 @@
 #pragma once
 
-const int maxQueueCount = 100;
-
-template<typename T>
+template<typename T, int Size = 10>
 class Queue
 {
 public:
 	Queue()
+		: size(Size + 1)
 	{
 		Clear();
 	}
@@ -17,7 +16,7 @@ public:
 
 	void Clear()
 	{
-		memset(data, 0, sizeof(T) * maxQueueCount);
+		memset(data, 0, sizeof(T) * (size));
 		front = 0;
 	}
 
@@ -29,10 +28,10 @@ public:
 	bool IsFull() const
 	{
 		// rear 의 다음 위치가 front 와 같으면 가득 찬 상태 
-		return (rear + 1) % maxQueueCount == front;
+		return (rear + 1) % size == front;
 	}
 
-	bool Enqueue(T newData)
+	bool Enqueue(const T& newData)
 	{
 		if (IsFull())
 		{
@@ -41,7 +40,7 @@ public:
 		}
 
 		// 뒤(rear) 다음 위치에 새 데이터 추가
-		rear = (rear + 1) % maxQueueCount;
+		rear = (rear + 1) % size;
 		data[rear] = newData;
 
 		return true;
@@ -54,11 +53,12 @@ public:
 			std::cout << "Error: 큐가 비어 있습니다.\n";
 			return false;
 		}
-		
-		front = (front + 1) % maxQueueCount;
+
+		front = (front + 1) % size;
 		outValue = data[front];
 
-		data[front] = 0;
+		//data[front] = 0;
+		memset(data + front/*= &data[front]*/, 0, sizeof(T));
 
 		return true;
 	}
@@ -66,11 +66,11 @@ public:
 	void Print()
 	{
 		std::cout << "큐 내용:";
-		int max = front < rear ? rear : rear + maxQueueCount;
+		int max = front < rear ? rear : rear + size;
 
 		for (int i = front + 1; i <= max; i++)
 		{
-			std::cout << " " << data[i % maxQueueCount] ;
+			std::cout << " " << data[i % size];
 		}
 
 		std::cout << "\n";
@@ -79,5 +79,6 @@ public:
 private:
 	int front = 0;
 	int rear = 0;
-	T data[maxQueueCount];
+	int size = 0;
+	T data[Size + 1] = {};
 };
