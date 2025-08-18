@@ -35,6 +35,25 @@ public:
 		SafeDelete(last);
 	}
 
+	Node<T>* operator[](size_t targetIndex)
+	{
+		Node<T>* current = first->next;
+		size_t index = 0;
+		if (IsEmpty() == true)
+		{
+			//RaiseDataEmptyEvent();
+			return nullptr;
+		}
+
+		while (current != last && index < targetIndex)
+		{
+			current = current->next;
+			++index;
+		}
+
+		return current;
+	}
+
 	// 노드 전체 삭제 함수
 	void Clear()
 	{
@@ -128,6 +147,17 @@ public:
 		SafeDelete(deleteNode); // 노드 삭제
 
 		--count; // 저장 수 감소 처리
+	}
+
+	bool IsEmpty() const
+	{
+		return count == 0;
+	}
+
+	// 리스트 노드 개수 확인.
+	size_t Count() const
+	{
+		return count;
 	}
 
 	void Print()
