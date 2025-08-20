@@ -31,6 +31,44 @@ public:
 		children.PushBack(child);
 	}
 
+	void RemoveChild(Node<T>* child)
+	{
+		RemoveChildRecursive(child);
+	}
+
+	void RemoveChildRecursive(Node<T>* child)
+	{
+		if (!child)
+		{
+			return;
+		}
+
+		List<Node<T>*>& children = child->GetChildren();
+
+		// 1) 자손 이 없는 경우
+		if (children.Size() == 0)
+		{
+			child->GetParent()->GetChildren().Remove(child);
+
+			delete child;
+			child = nullptr;
+
+			return;
+		}
+
+		// 자손이 있는 경우
+		while (children.Size() > 0)
+		{
+			RemoveChildRecursive(children[0]);
+		}
+
+		child->GetParent()->GetChildren().Remove(child);
+
+		delete child;
+		child = nullptr;
+	}
+
+
 	T GetData() const
 	{
 		return data;
