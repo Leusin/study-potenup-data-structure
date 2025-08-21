@@ -17,6 +17,9 @@ int main()
 		tree.Insert(5);
 		tree.Insert(1);
 		tree.Insert(15);
+
+		tree.Delete(5);
+		tree.Delete(15);
 	}
 
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);

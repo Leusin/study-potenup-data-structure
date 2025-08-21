@@ -14,6 +14,7 @@ public: // RAII
 	BinarySearchTree() = default;
 	~BinarySearchTree()
 	{
+		DestroyRecursive(root);
 	}
 
 public: // MESSAGE
@@ -67,6 +68,7 @@ public: // MESSAGE
 		}
 
 		// TODO: 재귀적으로 삭제하는 함수 작성 후 호출
+		DeleteRecursive(data, root);
 		return true;
 	}
 
@@ -161,7 +163,7 @@ private: // METHOD
 		{
 			return nullptr;
 		}
-		
+
 		// 2. 재귀 탐색
 		// 1) 현재 노드보다 값이 작음
 		if (node->GetData() > data)
@@ -174,36 +176,94 @@ private: // METHOD
 			node->SetRight(DeleteRecursive(data, node->GetRight()));
 		}
 		// 3) 삭제할 값을 찾음
-		
-		// 3. 삭제 처리
-		else
+
+		// 3. 삭제 노드 탐색
+		else //if (node->GetData() == data)
 		{
-			// 1) 삭제 노드에게 자식이 없는 경우
+			// 1) 자식이 없는 경우
 			if (!node->GetLeft() && !node->GetRight())
 			{
 				delete node;
 				return nullptr;
 			}
-			
-			// 2) 삭제 노드에게 자식이 둘 있는 경우
+
+			// 2) 자식이 모두 있는 경우
 			if (node->GetLeft() && node->GetRight())
 			{
 				/*
 				* 두가지 선택지가 있다.
-				* - 현재 위치를 자식 노드 중 큰 값으로 대체
-				* - 현재 위치를 자식 노드 중 작 값으로 대체
+				* -> 현재 위치를 자식 노드 중 큰 값으로 대체
+				* -> 현재 위치를 자식 노드 중dms 작 값으로 대체 (이쪽 방법 선택)
 				*/
 
-				Node<T>* repalcement = FindMin(node->GetRight());
+				// [1] 삭제할 위치의 노드 값을 대체 값으로 할당
+				Node<T>* minChild = FindMin(node->GetRight());
+				node->SetData(minChild->GetData());
 
-				return nullptr;
+				// [2] 대체되는 노드 삭제
+				node->SetRight(DeleteRecursive(node->GetData(), node->GetRight()));
 			}
-			
-			// 3) 삭제 노드에게 자식이 하나만 있는 경우
+
+			// 3) 자식이 하나만 있는 경우
+			else // if ((node->GetLeft() || node->GetRight()) && !(node->GetLeft() && node->GetRight())) // XOR
+			{
+				// 3-1) 왼쪽만 있는 경우
+				if (node->GetLeft())
+				{
+					Node<T>* left = node->GetLeft();
+					left->SetParent(node->GetParent());
+
+					delete node;
+
+					return left;
+
+				}
+				// 3-2) 오른쪽만 있는 경우
+				else if (node->GetRight())
+				{
+					Node<T>* right = node->GetRight();
+					right->SetParent(node->GetParent());
+
+					delete node;
+
+					return right;
+				}
+			}
 		}
+
+		return node;
+	}
+
+	// 재귀 메모리 해제
+	void DestroyRecursive(Node<T>* node)
+	{
+		// 종료 조건.
+		if (!node)
+		{
+			return;
+		}
+
+		Node<T>* left = node->GetLeft();
+		Node<T>* right = node->GetRight();
+
+		if (!left && !right)
+		{
+			delete node;
+			node = nullptr;
+			return;
+		}
+
+		// 자손이 있으면 재귀적으로 한번 더 진행.
+		DestroyRecursive(left);
+		DestroyRecursive(right);
+
+		// 자손 모두 제거 후 노드 제거.
+		delete node;
+		node = nullptr;
 	}
 
 private: // DATA
+
 	// 최상위 노드
 	Node<T>* root = nullptr;
 };

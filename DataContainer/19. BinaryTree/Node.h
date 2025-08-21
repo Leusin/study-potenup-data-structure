@@ -8,7 +8,7 @@ template<typename T>
 class Node
 {
 	// friend 선언
-	template<typename T> 
+	template<typename T>
 	friend class BinaryTree;
 
 public: // 생성자 소멸자
@@ -75,6 +75,7 @@ public: // 메시지 Message (인터페이스 Interface)
 
 public: // Getter Setter
 	T GetData() const { return data; }
+	void SetData(const T& newData) { data = newData; }
 
 	Node<T>* GetParent() const { return parent; }
 	void SetParent(Node<T>* newParent) { parent = newParent; }
