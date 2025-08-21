@@ -25,12 +25,14 @@ public: // MESSAGE
 	}
 
 	// 삽입
-	// - 중복된 값을 허용하지 않음
-	// - 루트가 nullptr 일 경우 새 노드를 루트로 지정한다.
-	// - 루트 부터 비교 시작
-	// - 재귀
-	//   - 새로 추가하는 값이 비교 노드보다 작으면 왼쪽 하위 노드로 이동
-	//   - 새로 추가하는 값이 비교 노드보다 크면 오른쪽 하위 노드로 이동
+	/*
+	* - 중복된 값을 허용하지 않음
+	* - 루트가 nullptr 일 경우 새 노드를 루트로 지정한다.
+	* - 루트 부터 비교 시작
+	* - 재귀
+	*   - 새로 추가하는 값이 비교 노드보다 작으면 왼쪽 하위 노드로 이동
+	*   - 새로 추가하는 값이 비교 노드보다 크면 오른쪽 하위 노드로 이동
+	*/
 	bool Insert(const T& data)
 	{
 		// 1. 중복 값 검사
@@ -49,16 +51,48 @@ public: // MESSAGE
 		}
 
 		// 3. 삽입 처리
-		root = InsertRecursive(data, root, nullptr);
+		/* root = */InsertRecursive(data, root, nullptr);
 
 		return true;
 	}
 
+	// 삭제
+	bool Delete(const T& data)
+	{
+		Node<T>* deleteNode = nullptr;
+		if (!Find(data, deleteNode))
+		{
+			std::cout << "ERROR:  삭제할 노드를 찾지 못했습니다.\n";
+			return false;
+		}
+
+		// TODO: 재귀적으로 삭제하는 함수 작성 후 호출
+		return true;
+	}
+
 	// 최솟값 검색
+	Node<T>* FindMin(Node<T>* node)
+	{
+		// 가장 왼쪽 끝의 노드 검색
+		while (node->GetLeft())
+		{
+			node = node->GetLeft();
+		}
+
+		return node;
+	}
 
 	// 최댓값 검색
+	Node<T>* FindMax(Node<T>* node)
+	{
+		// 가장 오른쪽 끝의 노드 검색
+		while (node->GetRight())
+		{
+			node = node->GetRight();
+		}
 
-	// 삭제
+		return node;
+	}
 
 	// 중위 순회(정렬된 수서대로 출력)
 
@@ -110,11 +144,64 @@ private: // METHOD
 			node->SetLeft(InsertRecursive(data, node->GetLeft(), node));
 		}
 		// 2) 오른쪽: 보다 큰 경우 
-		node->SetLeft(InsertRecursive(data, node->GetRight(), node));
+		else
+		{
+			node->SetRight(InsertRecursive(data, node->GetRight(), node));
+		}
 
 		return node;
 	}
-	
+
+	// 재귀 삭제
+	Node<T>* DeleteRecursive(const T& data, Node<T>* node)
+	{
+		// 1. 종료 조건
+		// 1) 현재 노드가 nullptr 인 경우 - ??? 발생하면 안 되는 조건
+		if (!node)
+		{
+			return nullptr;
+		}
+		
+		// 2. 재귀 탐색
+		// 1) 현재 노드보다 값이 작음
+		if (node->GetData() > data)
+		{
+			node->SetLeft(DeleteRecursive(data, node->GetLeft()));
+		}
+		// 2) 현재 노드보다 값이 큰 
+		else if (node->GetData() < data)
+		{
+			node->SetRight(DeleteRecursive(data, node->GetRight()));
+		}
+		// 3) 삭제할 값을 찾음
+		
+		// 3. 삭제 처리
+		else
+		{
+			// 1) 삭제 노드에게 자식이 없는 경우
+			if (!node->GetLeft() && !node->GetRight())
+			{
+				delete node;
+				return nullptr;
+			}
+			
+			// 2) 삭제 노드에게 자식이 둘 있는 경우
+			if (node->GetLeft() && node->GetRight())
+			{
+				/*
+				* 두가지 선택지가 있다.
+				* - 현재 위치를 자식 노드 중 큰 값으로 대체
+				* - 현재 위치를 자식 노드 중 작 값으로 대체
+				*/
+
+				Node<T>* repalcement = FindMin(node->GetRight());
+
+				return nullptr;
+			}
+			
+			// 3) 삭제 노드에게 자식이 하나만 있는 경우
+		}
+	}
 
 private: // DATA
 	// 최상위 노드
