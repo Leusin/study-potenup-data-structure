@@ -40,11 +40,20 @@ String::~String()
 
 String& String::operator=(const String& other)
 {
-    length = other.length;
+    // 1. 자가 대입 체크 (선택적이지만 안전한 코드 작성 습관)
+    if (this == &other)
+    {
+        return *this;
+    }
 
+    // 2. 기존 메모리 해제
+    // 이전에 할당된 메모리를 먼저 해제하지 않으면 메모리 누수가 발생합니다.
+    delete[] data;
+
+    // 3. 새 메모리 할당 및 복사
+    length = other.length;
     int size = (int)length + 1;
     data = new char[size];
-
     strcpy_s(data, size, other.data);
 
     return *this;
@@ -52,10 +61,17 @@ String& String::operator=(const String& other)
 
 String& String::operator=(String&& other)
 {
-    length = other.length;
-    data = other.data;
-    other.data = nullptr;
+    if (this != &other)
+    {
+        delete[] data; // Delete old memory first!
 
+        length = other.length;
+        data = other.data;
+
+        // Leave the source object in a valid, empty state
+        other.length = 0;
+        other.data = nullptr;
+    }
     return *this;
 }
 
