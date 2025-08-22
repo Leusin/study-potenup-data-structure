@@ -1,5 +1,6 @@
 #include "AStar.h"
 
+#include <iostream>
 #include <cmath>
 #include "Node.h"
 
@@ -132,10 +133,66 @@ std::vector<Node*> AStar::FindPath(Node* start, Node* goal, std::vector<std::vec
 			// 휴리스틱 비용 계산
 			neighbor->hCost = CalculateHeuristic(currentNode, goal);
 			neighbor->fCost = neighbor->gCost + neighbor->hCost;
+
+			Node* openListNode = nullptr;
+			for (Node* node : openList)
+			{
+				if (*node == *neighbor)
+				{
+					openListNode = node;
+					break;
+				}
+			}
+
+			if (openListNode == nullptr
+				|| openListNode->gCost > neighbor->gCost
+				|| openListNode->fCost > neighbor->fCost)
+			{
+				openList.emplace_back(neighbor);
+			}
+			else
+			{
+				SafeDelete(neighbor);
+			}
 		}
 	}
 
 	return std::vector<Node*>();
+}
+
+void AStar::DisplayGridWithPath(std::vector<std::vector<int>>& grid, const std::vector<Node*>& path)
+{
+	for (const Node* node : path)
+	{
+		// 경로는 '2'로 표시.
+		grid[node->position.y][node->position.x] = 2;
+	}
+
+	for (int y = 0; y < grid.size(); ++y)
+	{
+		for (int x = 0; x < grid[0].size(); ++x)
+		{
+			// 장애물.
+			if (grid[y][x] == 1)
+			{
+				std::cout << "# ";
+			}
+
+			// 경로.
+			else if (grid[y][x] == 2)
+			{
+				std::cout << "* ";
+			}
+
+			// 빈 공간.
+			else if (grid[y][x] == 0)
+			{
+				std::cout << ". ";
+			}
+		}
+
+		std::cout << "\n";
+	}
 }
 
 std::vector<Node*> AStar::ConstructPath(Node* goalNode)

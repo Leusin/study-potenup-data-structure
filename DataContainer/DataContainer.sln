@@ -47,7 +47,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "20. BinarySearchTree", "20.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "21. RBT", "21. RBT\21. RBT.vcxproj", "{4734A2BC-ABB8-40F8-826F-36E3199CD4D0}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "22. AStar", "2. AStar\2. AStar.vcxproj", "{F7F73314-6985-4B00-BA3C-0840625DFFFB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "22. AStar", "22. AStar\22. AStar.vcxproj", "{F7F73314-6985-4B00-BA3C-0840625DFFFB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "23. AStarAnimation", "23. AStarAnimation\23. AStar.vcxproj", "{42CCF2B1-AC01-41F3-8CB8-2AA8E579A3A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -241,6 +243,14 @@ Global
 		{F7F73314-6985-4B00-BA3C-0840625DFFFB}.Release|x64.Build.0 = Release|x64
 		{F7F73314-6985-4B00-BA3C-0840625DFFFB}.Release|x86.ActiveCfg = Release|Win32
 		{F7F73314-6985-4B00-BA3C-0840625DFFFB}.Release|x86.Build.0 = Release|Win32
+		{42CCF2B1-AC01-41F3-8CB8-2AA8E579A3A9}.Debug|x64.ActiveCfg = Debug|x64
+		{42CCF2B1-AC01-41F3-8CB8-2AA8E579A3A9}.Debug|x64.Build.0 = Debug|x64
+		{42CCF2B1-AC01-41F3-8CB8-2AA8E579A3A9}.Debug|x86.ActiveCfg = Debug|Win32
+		{42CCF2B1-AC01-41F3-8CB8-2AA8E579A3A9}.Debug|x86.Build.0 = Debug|Win32
+		{42CCF2B1-AC01-41F3-8CB8-2AA8E579A3A9}.Release|x64.ActiveCfg = Release|x64
+		{42CCF2B1-AC01-41F3-8CB8-2AA8E579A3A9}.Release|x64.Build.0 = Release|x64
+		{42CCF2B1-AC01-41F3-8CB8-2AA8E579A3A9}.Release|x86.ActiveCfg = Release|Win32
+		{42CCF2B1-AC01-41F3-8CB8-2AA8E579A3A9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

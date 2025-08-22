@@ -23,7 +23,11 @@ public: // RAII
 
 public: // MESSAGE
 
+	// 경로 탐색
 	std::vector<class Node*> FindPath(class Node* start, class Node* goal, std::vector<std::vector<int>>& grid);
+
+	// 그리드 출력 함수.
+	void DisplayGridWithPath(std::vector<std::vector<int>>& grid, const std::vector<Node*>& path);
 
 private: // METHOD
 
@@ -40,7 +44,10 @@ private: // METHOD
 	// 이미 방문했는지 확인
 	bool HasVisited(int x, int y, float gCost);
 
-	float CalculateHuristic(class Node* current, class Node* goal);
+	// 현재 위치부터 목표까지 추정 비용 게산
+	float CalculateHeuristic(class Node* current, class Node* goal) const;
+
+	void DisplayGrid(std::vector<std::vector<int>>& grid) const;
 
 private: // DATA
 
