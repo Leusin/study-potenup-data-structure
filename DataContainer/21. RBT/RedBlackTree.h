@@ -11,6 +11,7 @@
 #pragma once
 
 #include <iostream>
+#include <Windows.h>
 
 #include "Color.h"
 
@@ -29,6 +30,9 @@ public: // MESSAGE
 	// 추가
 	bool Insert(int data);
 
+	// 출력
+	void Print(int depth = 0, int blackCount = 0);
+
 private: // METHOD
 
 	// 노드 생성 팩토리
@@ -43,16 +47,33 @@ private: // METHOD
 	// 노드 삽입 후 재정렬 처리
 	void RestructureAfterInsert(class Node* newNode);
 
-	// 좌회전
+	// 회전: 부모-자식의 위치를 서로 바꾸는 연산. 
+
+	// 좌회전: 왼쪽 자식과 부모의 위치를 교환
 	void RotateToLeft(Node* node);
 
-	// 우회전
+	// 우회전: 오른쪽 자식과 부모의 위치 교환
 	void RotateToRight(Node* node);
 
+	// 출력 재귀
+	void PrintRecursive(Node* node, int depth, int blackCount);
+
+	void DestroyRecursive(Node* node);
 
 private: // DATA
 
 	class Node* root;
 
-	static class Node* nil;
+	class Node* nil;
 };
+
+enum class TextColor
+{
+	// 콘솔 색상 정의.
+	Red = FOREGROUND_RED,
+	Green = FOREGROUND_GREEN,
+	Blue = FOREGROUND_BLUE,
+	White = Red | Green | Blue,
+};
+
+void SetTextColor(TextColor color);

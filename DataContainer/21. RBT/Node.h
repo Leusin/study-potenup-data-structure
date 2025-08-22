@@ -12,8 +12,8 @@ public: // GET SET
 	int GetData() const { return data; }
 	void SetData(const int& newData) { data = newData; }
 
-	Color GetColor() const { return color; };
-	void SetColor(const Color& newColor) { color = newColor; };
+	Color GetColor() const { return color; }
+	void SetColor(const Color& newColor) { color = newColor; }
 	const char* GetColorString() const;
 
 	Node* GetParent() const { return parent; }
