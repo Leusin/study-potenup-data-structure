@@ -1,3 +1,4 @@
+#include "Node.h"
 #pragma once
 
 #include "Color.h"
@@ -7,6 +8,10 @@ class Node
 public: // RAII
 	Node(int data, Color color = Color::Red);
 	~Node() = default;
+
+	inline void Node::Query(const Bounds& queryBounds, std::vector<Node*>& possibleNodes)
+	{
+	}
 
 public: // GET SET
 	int GetData() const { return data; }
