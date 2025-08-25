@@ -51,6 +51,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "22. AStar", "22. AStar\22. 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "23. AStarAnimation", "23. AStarAnimation\23. AStar.vcxproj", "{42CCF2B1-AC01-41F3-8CB8-2AA8E579A3A9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "24. QuardTree", "24. QuardTree\24. QuardTree.vcxproj", "{B549B83C-794D-4BB6-AB31-74E60E1B1EAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -251,6 +253,14 @@ Global
 		{42CCF2B1-AC01-41F3-8CB8-2AA8E579A3A9}.Release|x64.Build.0 = Release|x64
 		{42CCF2B1-AC01-41F3-8CB8-2AA8E579A3A9}.Release|x86.ActiveCfg = Release|Win32
 		{42CCF2B1-AC01-41F3-8CB8-2AA8E579A3A9}.Release|x86.Build.0 = Release|Win32
+		{B549B83C-794D-4BB6-AB31-74E60E1B1EAC}.Debug|x64.ActiveCfg = Debug|x64
+		{B549B83C-794D-4BB6-AB31-74E60E1B1EAC}.Debug|x64.Build.0 = Debug|x64
+		{B549B83C-794D-4BB6-AB31-74E60E1B1EAC}.Debug|x86.ActiveCfg = Debug|Win32
+		{B549B83C-794D-4BB6-AB31-74E60E1B1EAC}.Debug|x86.Build.0 = Debug|Win32
+		{B549B83C-794D-4BB6-AB31-74E60E1B1EAC}.Release|x64.ActiveCfg = Release|x64
+		{B549B83C-794D-4BB6-AB31-74E60E1B1EAC}.Release|x64.Build.0 = Release|x64
+		{B549B83C-794D-4BB6-AB31-74E60E1B1EAC}.Release|x86.ActiveCfg = Release|Win32
+		{B549B83C-794D-4BB6-AB31-74E60E1B1EAC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
